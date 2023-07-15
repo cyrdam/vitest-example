@@ -1,0 +1,100 @@
+stages:
+  - build
+  - test
+
+.base_rules: &base_rules
+  except:
+    - main
+
+image: node:lts-alpine
+
+cache:
+  # Cache modules in between jobs
+  # key: $CI_COMMIT_REF_SLUG
+
+  # Cache modules using lock file: https://docs.gitlab.com/ee/ci/caching/index.html#compute-the-cache-key-from-the-lock-file
+  - key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - .pnpm-store/
+      - node_modules/
+    policy: pull
+  - key: $CI_COMMIT_REF_SLUG
+    paths:
+      - .next/
+      - coverage/
+    policy: pull-push
+
+before_script:
+  - npm install -g pnpm
+  - pnpm config set store-dir .pnpm-store
+  - pnpm install
+
+build:
+  <<: *base_rules
+  stage: build
+  script:
+    - pnpm run build
+  interruptible: true
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - .next/
+  # only:
+  #   refs:
+  #     - merge_requests
+
+lint:
+  <<: *base_rules
+  stage: test
+  script:
+    - pnpm run lint
+  interruptible: true
+  # only:
+  #   refs:
+  #     - merge_requests
+  #   changes:
+  #     - "**/*.{md|mdx}"
+  #     - "**/*.{ts|tsx}"
+  #     - "**/*.css"
+  #     - "./public/**/*"
+  #     - "./.eslintrc"
+  #     - "./.eslintignore"
+  #     - "./pnpm-lock.yaml"
+
+unit_tests:
+  <<: *base_rules
+  stage: test
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  script:
+    - 'pnpm run coverage'
+  cache:
+    key:  $CI_COMMIT_REF_SLUG
+    paths:
+      - coverage/
+  artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    paths:
+      - coverage/
+    expire_in: "3 days"
+    when: always
+    reports:
+      junit:
+        - junit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+  interruptible: true
+  # only:
+  #   refs:
+  #     - merge_requests
+  #   changes:
+  #     - "**/*.{md|mdx}"
+  #     - "**/*.{ts|tsx}"
+  #     - "**/*.css"
+  #     - "./public/**/*"
+  #     - "./jest.config.js"
+  #     - "./jest.setup.js"
+  #     - "./pnpm-lock.yaml"
+
