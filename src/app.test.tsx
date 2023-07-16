@@ -7,6 +7,7 @@ describe('App', () => {
 	test('should render App', () => {
 		const { container } = render(<App />);
 		expect(container.textContent).contains('Vite + Preactcount is Edit');
+		expect(container).toMatchSnapshot();
 	});
 
 	test('should increment after "count is" button is clicked', async () => {
