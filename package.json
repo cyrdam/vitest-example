@@ -10,10 +10,10 @@
 		"preview": "vite preview",
 		"test": "vitest",
 		"coverage": "vitest run --coverage",
-		"lint": "eslint --ext .ts,tsx --ignore-path .gitignore .",
-		"lint:fix": "eslint --fix --ext .ts,tsx --ignore-path .gitignore .",
-		"format:check": "prettier -u --ignore-path .gitignore \"*.{ts,tsx,css,html}\"",
-		"format:write": "prettier -u -w --ignore-path .gitignore \"*.{ts,tsx,css,html}\"",
+		"lint": "eslint --ext .ts,tsx .",
+		"lint:fix": "eslint --ext .ts,tsx --fix .",
+		"format:check": "prettier \"*.{ts,tsx,css,html}\" --ignore-unknown --check",
+		"format:write": "prettier \"*.{ts,tsx,css,html}\" --ignore-unknown --write ",
 		"prepare": "husky install"
 	},
 	"dependencies": {
