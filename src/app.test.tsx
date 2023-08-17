@@ -1,5 +1,4 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/preact';
-import { describe, expect, test } from 'vitest';
 
 import { App } from './app';
 
