@@ -20,7 +20,7 @@
 		"preact": "^10.19.2"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^17.8.1",
+		"@commitlint/cli": "^18.4.3",
 		"@commitlint/config-conventional": "^17.8.1",
 		"@preact/preset-vite": "^2.7.0",
 		"@testing-library/jest-dom": "^5.17.0",
