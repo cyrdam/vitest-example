@@ -34,7 +34,7 @@ exports[`App > should render App 1`] = `
   >
     <button>
       count is 
-      
+      0
     </button>
     <p>
       Edit 
