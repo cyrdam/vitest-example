@@ -17,28 +17,28 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "preact": "^10.22.0"
+    "preact": "^10.23.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "@preact/preset-vite": "^2.8.3",
-    "@testing-library/jest-dom": "^6.4.6",
+    "@preact/preset-vite": "^2.9.0",
+    "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/preact": "^3.2.4",
     "@testing-library/user-event": "^14.5.2",
-    "@typescript-eslint/parser": "^7.14.1",
+    "@typescript-eslint/parser": "^7.18.0",
     "@vitest/coverage-v8": "^1.6.0",
     "@vitest/ui": "^1.6.0",
     "eslint": "^8.57.0",
     "eslint-config-preact": "^1.4.0",
     "eslint-config-prettier": "^9.1.0",
     "happy-dom": "^14.12.3",
-    "husky": "^9.0.11",
-    "jsdom": "^24.1.0",
+    "husky": "^9.1.4",
+    "jsdom": "^24.1.1",
     "lint-staged": "^15.2.7",
-    "prettier": "^3.3.2",
-    "typescript": "^5.5.2",
-    "vite": "^5.3.1",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
+    "vite": "^5.3.5",
     "vitest": "^1.6.0",
     "vitest-dom": "^0.1.1"
   }
